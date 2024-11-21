@@ -26,6 +26,9 @@ Boolean x=contact.addContact(c);
 
 	@BeforeEach
 	void setUp() throws Exception {
+		c.firstName = "Tom";
+		c.lastName = "Cruise";
+		c.phone = "9810724653";
 	}
 
 	@AfterEach
@@ -33,17 +36,12 @@ Boolean x=contact.addContact(c);
 	}
 	@Test
 	void testValidContacts() {
-		
+		Contacts c=new Contacts("Tom", "Cruise", "9810724653");
+
 		assertTrue(contact.addContact(c));
 		
 	}
-	@Test
-	void testViewContact() {
-		//view
-		//c.phone="9810724653";
-		assertTrue(contact.viewContact(c));
-
-		}
+	
 	@Test
 	void testPhoneNoType() {
 		
@@ -89,10 +87,21 @@ Boolean x=contact.addContact(c);
 	}
 	void testContactPresent() {
 		//delete
-		c.phone="9810724653";
+		Contacts c=new Contacts("Tom", "Cruise", "9810724653");
+
+		//c.phone="9810724653";
 		assertTrue(contact.deleteContact(c));
 	}
-	
+	@Test
+	void testViewContact() {
+		//view
+		Contacts c=new Contacts("Sam", "Smith", "9810724652");
+
+		//c.phone="9810724653";
+		contact.addContact(c);
+		assertTrue(contact.viewContact(c));
+
+		}
 	@Test
 	void testNoContactToView() {
 		//view
@@ -101,19 +110,19 @@ assertFalse(contact.viewContact(c));
 
 	}
 	
-	
-	
 	@Test
 	void testUnableToUpdate() {
 		//update
+		
 		c.phone="18923745024";
 		assertFalse(contact.updateContact(c,"Jane","Depp"));	
 	}
 	@Test
 	void testableToUpdate() {
 		//update
-	c.phone="9810724653";
-
+	//c.phone="9810724653";
+	Contacts c=new Contacts("Jane", "Depp", "9081176354");
+	contact.addContact(c);
 	assertTrue(contact.updateContact(c,"John","Depp"));	}
 
 }
